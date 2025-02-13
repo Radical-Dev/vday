@@ -1,9 +1,14 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import { useState } from "react";
 
 function page() {
+  const [loading, setloading] = useState(false);
+  const [emailSent, setemailSent] = useState(false);
+
   const sendEmail = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setloading(true);
     const url = "/api/send";
     const options = {
       method: "POST",
@@ -12,7 +17,7 @@ function page() {
         "Content-Type": "application/json;charset=UTF-8",
       },
       body: JSON.stringify({
-        note: "Test",
+        note: (e.target as HTMLElement).innerText,
       }),
     };
 
@@ -20,6 +25,8 @@ function page() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        setloading(false);
+        setemailSent(true);
       });
   };
 
@@ -30,18 +37,56 @@ function page() {
           Will you <br /> be my <br /> Valentine?
         </h1>
 
-        <div className="flex relative justify-around mt-8 z-10">
-          <button
-            onClick={sendEmail}
-            className="btn  btn-neutral text-neutral-content text-1xl tracking-widest px-14 rounded-md"
+        {loading ? (
+          <span
+            className={
+              emailSent
+                ? "hidden"
+                : "loading text-center mx-auto loading-infinity loading-lg w-20"
+            }
+          ></span>
+        ) : (
+          <div
+            className={
+              emailSent ? "hidden" : "flex relative justify-around mt-8 z-10"
+            }
           >
-            <span>Yes</span>
-          </button>
-          <button className="btn  bg-info-content text-base-content text-1xl tracking-widest px-14 rounded-md">
-            <span className="">No</span>
-          </button>
+            <button
+              onClick={sendEmail}
+              className="btn  btn-neutral text-neutral-content text-1xl tracking-widest px-14 rounded-md"
+            >
+              Yes of Course
+            </button>
+            <button
+              onClick={sendEmail}
+              className="btn  bg-info-content text-base-content text-1xl tracking-widest px-14 rounded-md"
+            >
+              Yes
+            </button>
+          </div>
+        )}
+
+        <div
+          role="alert"
+          className={emailSent ? "alert alert-success" : "hidden"}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 shrink-0 stroke-neutral-content"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span className="text-neutral-content">Confirmation sent</span>
         </div>
       </div>
+
       <div className="h-[60%] absolute -top-5 left-0 z-0 rotate-[20deg]">
         <Image
           className="w-auto h-full"

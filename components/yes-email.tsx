@@ -1,13 +1,24 @@
 import * as React from "react";
 
 interface YesEmailTemplateProps {
-  firstName: string;
+  response: string;
 }
 
 export const YesEmailTemplate: React.FC<Readonly<YesEmailTemplateProps>> = ({
-  firstName,
+  response,
 }) => (
   <div>
-    <h1>Yes I will be there</h1>
+    <h1>Valentine's Date</h1>
+    <div>Response: {response}</div>
+    <h2>Things to pack:</h2>
+    <ul>
+      <li>Your Beautiful smile</li>
+      <li>Your Stunning body</li>
+      <li>Your intoxicating energy</li>
+      <li>Your effortless radiance</li>
+      <li>Your captivating charm</li>
+      <li>My everything</li>
+    </ul>
+    <p>See you on Friday, Tightole</p>
   </div>
 );
