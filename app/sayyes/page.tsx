@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { useState } from "react";
 
-function page() {
+function Page() {
   const [loading, setloading] = useState(false);
   const [emailSent, setemailSent] = useState(false);
 
@@ -139,4 +139,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

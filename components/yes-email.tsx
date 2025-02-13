@@ -8,7 +8,7 @@ export const YesEmailTemplate: React.FC<Readonly<YesEmailTemplateProps>> = ({
   response,
 }) => (
   <div>
-    <h1>Valentine's Date</h1>
+    <h1>Valentine&rsquo;s Date</h1>
     <div>Response: {response}</div>
     <h2>Things to pack:</h2>
     <ul>
