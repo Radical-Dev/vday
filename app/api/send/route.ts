@@ -8,8 +8,8 @@ export async function POST(req: Request) {
   try {
     const { data, error } = await resend.emails.send({
       from: "Quewayne <noreply@adonisfitnessclub.com>",
-      to: ["quewayne.grant@yahoo.com"],
-      subject: "Hello world",
+      to: ["quewayne.grant@yahoo.com", "sherekasilburn@gmail.com"],
+      subject: "Feb 14",
       react: await YesEmailTemplate({ response: dataInput.note }),
     });
 
