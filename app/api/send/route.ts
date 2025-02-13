@@ -10,7 +10,7 @@ export async function POST(req: Request) {
       from: "Quewayne <noreply@adonisfitnessclub.com>",
       to: ["quewayne.grant@yahoo.com"],
       subject: "Hello world",
-      react: YesEmailTemplate({ response: dataInput.note }),
+      react: await YesEmailTemplate({ response: dataInput.note }),
     });
 
     if (error) {
